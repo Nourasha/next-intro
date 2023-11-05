@@ -22,8 +22,6 @@ export default function UpdateProduct({
   const [newImage, setImage] = useState<string>(image);
   const [newPrice, setPrice] = useState<number | null>(price);
   const [loading, setLoading] = useState<boolean>(false);
-  const [isDeletePromptVisible, setDeletePromptVisible] =
-    useState<boolean>(false);
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
@@ -84,9 +82,6 @@ export default function UpdateProduct({
     setBeingEdited(false);
     fetchProducts();
   };
-  function showDeletePrompt() {
-    setDeletePromptVisible(true);
-  }
 
   return beingEdited ? (
     <div
@@ -167,7 +162,7 @@ export default function UpdateProduct({
             <>
               <CustomButtons
                 title="Cancel"
-                containerStyles="w-28 py-[16px] rounded-lg bg-carnal-red mx-2"
+                containerStyles="w-28 py-[16px] rounded-lg bg-green-700 mx-2"
                 textStyles="text-white text-[14px] leading-[17px] font-bold"
                 handleClick={() => {
                   setBeingEdited(false);
@@ -187,7 +182,7 @@ export default function UpdateProduct({
     </div>
   ) : (
     <div className="max-w-sm rounded overflow-hidden shadow-lg place-self-center">
-      <div className="w-full h-48">
+      <div className="w-80 h-48">
         <img
           className="w-full h-full object-cover"
           src={image}
@@ -199,20 +194,13 @@ export default function UpdateProduct({
         <p className="text-gray-700 text-base">{description}</p>
       </div>
       <div className="float-right mx-5 my-3">$ {price}</div>
-      <div className="flex justify-center mt-12 pb-4">
+      <div className="flex mt-12 pb-4">
         <CustomButtons
           title="Edit"
-          containerStyles="w-28 py-[16px] rounded-lg bg-orange-600 mx-2"
+          containerStyles="float-left w-28 py-[16px] rounded-lg bg-orange-600 mx-2"
           textStyles="text-white text-[14px] leading-[17px] font-bold"
           // rightIcon='/right-arrow.svg'
           handleClick={() => setBeingEdited(true)}
-        />
-        <CustomButtons
-          title="Delete"
-          containerStyles="w-28 py-[16px] rounded-lg bg-carnal-red mx-2"
-          textStyles="text-white text-[14px] leading-[17px] font-bold"
-          // rightIcon='/right-arrow.svg'
-          handleClick={() => showDeletePrompt()}
         />
       </div>
     </div>
