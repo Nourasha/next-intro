@@ -1,0 +1,25 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Feed {
+  id   String @id @default(cuid())
+  name String
+  url  String @unique
+}
+
+model User {
+  id        String  @id @default(cuid())
+  email     String  @unique
+  nickname  String?
+  birthYear Int?
+  // sqlite støtter ikke Json
+}
