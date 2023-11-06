@@ -13,12 +13,11 @@ const Admin = () => {
 
   const fetchProducts = async () => {
     try {
-      // const response = await fetch('/mocks/dishes.json');
       const response = await fetch("/api/products");
       const data = await response.json();
       setProduct(data);
     } catch (error) {
-      console.error("Error fetching dishes:", error);
+      console.error("Error", error);
     }
   };
 
